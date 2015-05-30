@@ -17,6 +17,6 @@ module DwollaVars
 	# plugin in production. This is just illustrative. I swear.
 	@@thing_price = 450.00
 	@@shipping = 100.00
-	@@destinationId = "dstancu@nyu.edu"
+	@@destinationId = "812-111-7219"
 
 end

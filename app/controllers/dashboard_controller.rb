@@ -32,7 +32,7 @@ class DashboardController < ApplicationController
 {
   \"purchaseOrder\": {
     \"total\": \"#{DwollaVars.thing_price + DwollaVars.shipping}\",
-    \"destinationId\": \"\",
+    \"destinationId\": \"#{DwollaVars.destinationId}\",
     \"customerInfo\": {
     \"firstName\": \"\",
     \"lastName\": \"\",

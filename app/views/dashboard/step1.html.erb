@@ -40,15 +40,15 @@
 				<h2 class="page-header">Process Checkout</h2>
 				<div class="row">
 					<div class="col-md-6 col-xs-6">
-						<p><%= f.text_field :firstName, class: 'form-control', :placeholder => 'First Name' %></p>
+						<p><%= f.text_field :firstName, :tabindex => 1, class: 'form-control', :placeholder => 'First Name' %></p>
 						
-						<p><%= f.text_field :email, class: 'form-control', :placeholder => 'E-Mail' %></p>
-						<p><%= f.text_field :city, class: 'form-control', :placeholder => 'City' %></p>
+						<p><%= f.text_field :email, :tabindex => 3, class: 'form-control', :placeholder => 'E-Mail' %></p>
+						<p><%= f.text_field :city, :tabindex => 5, class: 'form-control', :placeholder => 'City' %></p>
 					</div>
 					<div class="col-md-6 col-xs-6">
-						<p><%= f.text_field :lastName, class: 'form-control', :placeholder => 'Last Name' %></p>
-						<p><%= f.text_field :state, class: 'form-control', :placeholder => 'State' %></p>
-						<p><%= f.text_field :zip, class: 'form-control', :placeholder => 'ZIP' %></p>
+						<p><%= f.text_field :lastName, :tabindex => 2, class: 'form-control', :placeholder => 'Last Name' %></p>
+						<p><%= f.text_field :state, :tabindex => 4, class: 'form-control', :placeholder => 'State' %></p>
+						<p><%= f.text_field :zip, :tabindex => 6, class: 'form-control', :placeholder => 'ZIP' %></p>
 					</div>
 				</div>
 				<hr />
