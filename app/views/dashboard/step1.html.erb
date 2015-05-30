@@ -1,0 +1,59 @@
+<%= stylesheet_link_tag "application" %>
+<%= javascript_include_tag "dashboard" %>
+
+
+<div class="container">
+	<div class="row">
+	<h2 class="page-header">Your Cart</h2>
+		<div class="well">
+	          <table class="table table-striped table-hover table-bordered">
+	            <thead>
+	              <tr>
+	                <th>#</th>
+	                <th>Item</th>
+	                <th>Description</th>
+	                <th>Subtotal</th>
+	                <th>Shipping</th>
+	                <th>Total</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr>
+	                <td>1</td>
+	                <td><b>Thingamadoodaddle</b></td>
+	                <td>Thingamadoodaddle is compatible with gizmo and complies to unread standards.</td>
+	                <td><%= DwollaVars.thing_price %></td>
+	                <td><%= DwollaVars.shipping %></td>
+	                <td><%= DwollaVars.thing_price + DwollaVars.shipping %></td>
+	              </tr>
+	            </tbody>
+	          </table>
+	    </div>
+    </div>
+	<div class="row">
+		<%= form_for(:payment, :url => {:controller => 'dashboard', :action => 'do_checkout'}) do |f| %>
+			<div class="col-md-6 col-lg-6">
+				<h2 class="page-header">Create Purchase Order</h2>
+				<p><%== Parser.md.render(@fsjson).html_safe %></p>
+			</div>
+			<div class="col-md-6 col-lg-6">
+				<h2 class="page-header">Process Checkout</h2>
+				<div class="row">
+					<div class="col-md-6 col-xs-6">
+						<p><%= f.text_field :firstName, class: 'form-control', :placeholder => 'First Name' %></p>
+						
+						<p><%= f.text_field :email, class: 'form-control', :placeholder => 'E-Mail' %></p>
+						<p><%= f.text_field :city, class: 'form-control', :placeholder => 'City' %></p>
+					</div>
+					<div class="col-md-6 col-xs-6">
+						<p><%= f.text_field :lastName, class: 'form-control', :placeholder => 'Last Name' %></p>
+						<p><%= f.text_field :state, class: 'form-control', :placeholder => 'State' %></p>
+						<p><%= f.text_field :zip, class: 'form-control', :placeholder => 'ZIP' %></p>
+					</div>
+				</div>
+				<hr />
+				<%= f.submit "Process Checkout", class: "btn btn-primary btn-block" %>
+			</div>
+		<% end %>
+	</div>
+</div>
