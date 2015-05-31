@@ -34,7 +34,7 @@
 		<%= form_for(:payment, :url => {:controller => 'dashboard', :action => 'do_checkout'}) do |f| %>
 			<div class="col-md-6 col-lg-6">
 				<h2 class="page-header">Create Purchase Order</h2>
-				<p><%== Parser.md.render(@fsjson).html_safe %></p>
+				<p><%== Parser.md.render(@pojson).html_safe %></p>
 			</div>
 			<div class="col-md-6 col-lg-6">
 				<h2 class="page-header">Process Checkout</h2>

@@ -27,8 +27,7 @@ class DashboardController < ApplicationController
 		if not_configured?
 			render 'notconf'
 		else
-			fs = DwollaVars.Dwolla::FundingSources.get
-			@fsjson = "```js 
+			@pojson = "```js 
 {
   \"purchaseOrder\": {
     \"total\": \"#{DwollaVars.thing_price + DwollaVars.shipping}\",
@@ -43,10 +42,6 @@ class DashboardController < ApplicationController
     }
   }
 } \n```"
-			@fs = []
-			fs.each do |h|
-				@fs.push([h['Name'], h['Id']]) 
-			end
 		end
 	end
 
@@ -54,14 +49,12 @@ class DashboardController < ApplicationController
 		if not_configured?
 			render 'notconf'
 		elsif params[:commit] == "Process Checkout"
+			DwollaVars.Dwolla::OffsiteGateway.clear_session
+			DwollaVars.Dwolla::OffsiteGateway.set_customer_info(*params[:payment].values)
+			DwollaVars.Dwolla::OffsiteGateway.add_product('Thingamadoodaddle', 'Specific doodad description', DwollaVars.thing_price + DwollaVars.shipping, 1)
+
+			redirect_to(DwollaVars.Dwolla::OffsiteGateway.get_checkout_url(DwollaVars.destinationId))
 			
-			# Set other necessities
-			params[:payment][:pin] = DwollaVars.pin
-			params[:payment][:destinationType] = is_email?(params[:payment][:destinationId]) ? "Email" : "Dwolla"
-
-			@txjson = "```js \n #{JSON.pretty_generate DwollaVars.Dwolla::Transactions.get DwollaVars.Dwolla::Transactions.send params[:payment]}\n```"
-
-			render 'step2'
 		else
 			flash[:error] = "Something went wrong. Try again?"
 			redirect_to '/'
