@@ -1,0 +1,16 @@
+<%= stylesheet_link_tag "application" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 col-lg-3"></div>
+		<div class="col-md-6 col-lg-6">
+			<h2 class="page-header">Checkout Complete</h2>
+			<h5 class="well well-sm text-center">In order to ensure the highest levels of security while using Dwolla's off-site gateway checkout, it is not necessary, but advised to do the hash-verification procedure outlined <a href="https://developers.dwolla.com/dev/pages/guides/offsite_gateway#3-handling-verification-security">here.</a> If you are seeing this message, security verification was <b>successful</b>!
+			<hr />
+			Your checkout return data is below.
+			</h5>
+			<p><%== Parser.md.render(@compjson).html_safe %></p>
+		</div>
+		<div class="col-md-3 col-lg-3"></div>
+	</div>
+</div>

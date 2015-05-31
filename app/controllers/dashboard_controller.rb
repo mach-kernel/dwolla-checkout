@@ -49,16 +49,26 @@ class DashboardController < ApplicationController
 		if not_configured?
 			render 'notconf'
 		elsif params[:commit] == "Process Checkout"
+
+			# Set up checkout
 			DwollaVars.Dwolla::OffsiteGateway.clear_session
 			DwollaVars.Dwolla::OffsiteGateway.set_customer_info(*params[:payment].values)
-			DwollaVars.Dwolla::OffsiteGateway.add_product('Thingamadoodaddle', 'Specific doodad description', DwollaVars.thing_price + DwollaVars.shipping, 1)
+			DwollaVars.Dwolla::OffsiteGateway.add_product('Thingamadoodaddle', 'Specific doodad description', DwollaVars.thing_price, 1)
+			DwollaVars.Dwolla::OffsiteGateway.shipping = DwollaVars.shipping
+			DwollaVars.Dwolla::OffsiteGateway.redirect = DwollaVars.redirect
 
+			# Redirect to Dwolla to finish checkout
 			redirect_to(DwollaVars.Dwolla::OffsiteGateway.get_checkout_url(DwollaVars.destinationId))
-			
+
 		else
 			flash[:error] = "Something went wrong. Try again?"
 			redirect_to '/'
 		end
+	end
+
+	def complete_checkout
+		@compjson = "```js \n #{JSON.pretty_generate(DwollaVars.Dwolla::OffsiteGateway.read_callback(params.to_json))}\n```"
+		render 'complete'
 	end
 
 end

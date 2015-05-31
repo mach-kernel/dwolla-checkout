@@ -16,11 +16,11 @@ This application does not require any database access as all the data is process
 
 ### The easy way
 
-The default application key and secret bundled with the application are for you to use with the UAT environment, so you can just run it!
+The default application key and secret bundled with the application are for you to use with the UAT environment, so they do not need to be changed. However, you do need to properly set `thing_price`, `shipping`, `destinationId`, and `redirect` in order for the off-site gateway checkout to be successful.
 
 ```bash
-git clone https://github.com/mach-kernel/dwolla-whitelabel.git
-cd dwolla-whitelabel
+git clone https://github.com/mach-kernel/dwolla-ofg.git
+cd dwolla-ofg
 bundle install && rails s
 ```
 
@@ -34,17 +34,21 @@ Just kidding. The only thing that you would really need to configure are the `dw
 require 'dwolla'
 
 module DwollaVars
-	mattr_reader  :Dwolla, :pin
+    mattr_reader  :Dwolla, :pin, :thing_price, :shipping, :destinationId, :redirect
 
-	@@Dwolla ||= Dwolla
-	
-	@@Dwolla::api_key ||= nil
-	@@Dwolla::api_secret ||= nil
+    @@Dwolla ||= Dwolla
+    
+    @@Dwolla::api_key ||= nil
+    @@Dwolla::api_secret ||= nil
 
-	@@Dwolla::token ||= nil
-	@@pin ||= nil
+    @@Dwolla::sandbox ||= true
 
-	@@Dwolla::sandbox ||= true
+    # This is due to laziness. Please use a shopping cart
+    # plugin in production. This is just illustrative. I swear.
+    @@thing_price = nil
+    @@shipping = nil
+    @@destinationId = nil
+    @@redirect = "http://somehostna.me/dashboard/complete_checkout"
 end
 ```
 

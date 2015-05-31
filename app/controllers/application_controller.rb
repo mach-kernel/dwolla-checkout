@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   # Very simple session management. We don't need anything fancy.
   def not_configured?
-  	DwollaVars.Dwolla::token.nil? && DwollaVars.pin.nil?
+  	DwollaVars.thing_price.nil? && DwollaVars.shipping.nil? && DwollaVars.destinationId.nil? && DwollaVars.redirect.nil?
   end
 
 end
