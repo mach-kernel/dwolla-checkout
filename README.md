@@ -1,4 +1,4 @@
-# dwolla-ofg
+# dwolla-checkout
 A quickstart tutorial application written in Rails 4 + bootstrap to illustrate the recommended off-site gateway UX flow.
 
 Syntax highlighting done via [redcarpet](https://github.com/vmg/redcarpet) and [rouge](https://github.com/jneen/rouge).
@@ -19,8 +19,8 @@ This application does not require any database access as all the data is process
 The default application key and secret bundled with the application are for you to use with the UAT environment, so they do not need to be changed. However, you do need to properly set `thing_price`, `shipping`, `destinationId`, and `redirect` in order for the off-site gateway checkout to be successful.
 
 ```bash
-git clone https://github.com/mach-kernel/dwolla-ofg.git
-cd dwolla-ofg
+git clone https://github.com/mach-kernel/dwolla-checkout.git
+cd dwolla-checkout
 bundle install && rails s
 ```
 
