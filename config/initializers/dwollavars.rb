@@ -15,6 +15,6 @@ module DwollaVars
 	@@thing_price = 45.00
 	@@shipping = 5.00
 	@@destinationId = "812-124-7074"
-	@@redirect = "http://localhost:3000/dashboard/complete_checkout"
+	@@redirect = "https://dwolla-checkout.herokuapp.com/dashboard/complete_checkout"
 
 end
